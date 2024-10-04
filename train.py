@@ -101,5 +101,10 @@ def train_epoch(model, loader, optimizer, loss_func):
     """
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     augmenter = DataAugmenter().to(device)
+    torch.cuda.empty_cache()
+    gc.collect() # delete cache
+    model.train()
+    run_loss = AverageMeter()
+
     
 
